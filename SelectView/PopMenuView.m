@@ -51,6 +51,7 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
+    // 填充颜色
     CGContextSetFillColorWithColor(contextRef, [UIColor whiteColor].CGColor);
 //    CGContextSetRGBFillColor(contextRef, 255.0/255.0, 255.0/255.0, 255.0/255.0, 1);
     CGContextSetLineWidth(contextRef, 1);
@@ -58,8 +59,9 @@
     CGFloat radius = 6.0f;
     //    突出部分高度
     CGFloat specialLocationHeight = 10;
-    //    最小
+    //    绘制后最小
     CGFloat minX = CGRectGetMinX(self.bounds);
+    //    绘制后Y
     CGFloat minY = CGRectGetMinY(self.bounds) + specialLocationHeight;
     //    最大
     CGFloat maxX = CGRectGetMaxX(self.bounds);
@@ -70,7 +72,7 @@
     CGContextMoveToPoint(contextRef, midX - specialLocationHeight, minY);
     CGContextAddLineToPoint(contextRef, midX , minY - specialLocationHeight);
     CGContextAddLineToPoint(contextRef, midX + specialLocationHeight, minY);
-    //绘制边界
+    //绘制边界及圆角
     CGContextAddArcToPoint(contextRef, maxX, minY, maxX, maxY, radius);
     CGContextAddArcToPoint(contextRef,  maxX, maxY, minX, maxY, radius);
     CGContextAddArcToPoint(contextRef,  minX, maxY, minX, minY, radius);
